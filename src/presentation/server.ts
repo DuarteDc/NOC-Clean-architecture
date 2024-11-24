@@ -12,7 +12,10 @@ export class Server {
 
         CronService.createJob('*/5 * * * * *', () => {
             const url = 'https://google.com'
-            new CheckService(fileSystemRepository, () => console.log(`${url} is ok`), error => console.log(error)).execute(url)
+            new CheckService(fileSystemRepository,
+                () => console.log(`${url} is ok`),
+                error => console.log(error))
+                .execute(url)
         })
     }
 
