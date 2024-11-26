@@ -30,7 +30,7 @@ export class FileSystemDatasource implements LogDatasource {
 
     }
 
-    saveLog(newLog: LogEntity): void {
+    async saveLog(newLog: LogEntity): Promise<void> {
         const logAsJson = `${JSON.stringify(newLog)}\n`
 
         fs.appendFileSync(this.allLogsPath, logAsJson)
@@ -51,7 +51,7 @@ export class FileSystemDatasource implements LogDatasource {
         return content.split('\n').map(LogEntity.fromJson)
     }
 
-    getLogs(severityLevel: LogSeverityLevel): LogEntity[] {
+    async getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {
 
         switch (severityLevel) {
             case LogSeverityLevel.low:
