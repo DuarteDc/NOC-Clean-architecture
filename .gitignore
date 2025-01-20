@@ -1,6 +1,7 @@
 /node_modules
 /logs
-/mongo
-/.postgres
+/.mongo*
+/.postgres*
 .env
-
+/mongo*
+/postgres*
