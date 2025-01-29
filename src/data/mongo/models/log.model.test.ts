@@ -26,8 +26,23 @@ describe('log model testing', () => {
             createdAt: expect.any(Date),
             id: expect.any(String)
         }))
-
+        await LogModel.findByIdAndDelete(log.id)
     })
 
+    test('should return the schema object', () => {
+        const schema = LogModel.schema.obj;
 
+        expect(schema).toEqual(expect.objectContaining(
+            {
+                message: { type: expect.any(Function), required: true },
+                origin: { type: expect.any(Function), required: true },
+                level: {
+                    type: expect.any(Function),
+                    enum: ['low', 'medium', 'high'],
+                    default: 'low'
+                },
+                createdAt: expect.any(Object)
+            }
+        ))
+    })
 });
